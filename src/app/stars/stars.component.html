@@ -1,0 +1,21 @@
+<section class="flex justify-start gap-x-4">
+<div *ngFor="let _ of starsArray; let i = index">
+    <div *ngIf="(i+1) < stars; else notStarTemplate" class="fill-red ">
+      
+        <mat-icon>star</mat-icon>
+    </div>
+    <ng-template #notStarTemplate >
+    <div *ngIf="(i+1) > stars; else templateName">
+      
+        <mat-icon>star_border</mat-icon>
+    </div>
+    
+    <ng-template #templateName >
+    <div class="fill-red ">
+        <mat-icon>star_half</mat-icon>
+    </div>
+  </ng-template>
+</ng-template>
+
+</div>
+</section>

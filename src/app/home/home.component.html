@@ -1,5 +1,38 @@
-<ul>
+<ul class="flex  justify-start items-center flex-wrap p-0">
     <li *ngFor="let food of foods ">
-        <img src="{{food}}" /> 
+        <a class="h-[25rem] w-[20rem] hover:opacity-90 border border-slate-300 rounded-lg m-[0.5rem] flex flex-col overflow-hidden">
+            <img src="{{food.imageUrl}}" /> 
+            <div class="content p-2 flex justify-between w-full ">
+                <div class="name text-[#e72929] font-bold capitalize">
+                    {{food.name}}
+                </div>
+                <span class="favorite text-[#72929] cursor-pointer">
+                    <mat-icon class="{{food.favorite ? 'fill-red' : ''}}" *ngIf="food.favorite" >favorite</mat-icon>
+                    <!-- <mat-icon class="{{food.favorite ? 'fill-red' : ''}}"  >favorite</mat-icon> -->
+                    <mat-icon *ngIf="!food.favorite">favorite_border</mat-icon>
+
+                </span>
+               
+            </div>
+            <app-stars [stars]="+food.stars"> </app-stars>
+            <footer class="p-2 flex justify-between" >
+                <div class="text-sm text-gray-400 hover:text-slate-800 cursor-default">
+                    <span class="capitalize" >
+                        {{food.origins.join(", ")}}
+
+                    </span>
+                </div>
+                <div class="fill-red flex justify-start gap-2 items-start mt-1">
+                    <mat-icon>timer</mat-icon>
+                    <span class="text-slate-700">{{food.cookTime}}</span>
+                </div>
+              
+            </footer>
+        <footer class="p-2">  
+            <div>
+                {{food.price|currency}}
+            </div>
+        </footer>
+        </a>
     </li>
 </ul>
