@@ -1,6 +1,6 @@
-<section *ngIf="food" class="flex flex-col md:flex-row justify-center items-center m-12 min-w-[25rem] ">
-    <img [src]="food.imageUrl" [alt]="food.name" class="rounded-2xl object-cover h-[25rem] m-4">
-<article class="w-full md:w-1/4">
+<section *ngIf="food" class="flex flex-col md:flex-row justify-center items-center md:m-12 md:min-w-[25rem] ">
+    <img [src]="food.imageUrl" [alt]="food.name" class="rounded-2xl object-cover h-[25rem] m-4 px-2 md:px-0">
+<article class="w-full md:w-1/4 px-5 md:px-0">
     
     <section class="flex gap-4 items-start justify-start">
         <h1>{{food.name}}</h1>
@@ -41,7 +41,7 @@
         </div>
     </section>
 
-    <footer>
+    <footer class="mb-20 md:mb-0">
         <div class="text-5xl text-green-600">
             {{food.price|currency}}
         </div>

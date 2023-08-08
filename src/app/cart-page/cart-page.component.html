@@ -1,15 +1,23 @@
-<section>
-    <ul>
-        <li *ngFor="let item of cart.items">
-            <img [src]="item.food.imageUrl" [alt]="item.food.name" class="rounded-2xl object-cover h-[25rem] m-4">
+<section *ngIf="cart.items.length>0" class=" m-6 flex flex-col md:flex-row max-w-3xl  mx-auto">
+    <ul class="flex-grow border border-[#ffbbbb] rounded-2xl m-2">
+        <li *ngFor="let item of cart.items" 
+        class="flex flex-wrap md:flex-none md:flex-nowrap md:grid md:grid-cols-5 hover:bg-slate-100 items-center border-b border-b-gray-200 last:border-0
+        first:hover:rounded-t-2xl last:hover:rounded-b-2xl
+        mt-10 md:mt-0
+        ">
+            <img [src]="item.food.imageUrl" [alt]="item.food.name" 
+            class="rounded-3xl md:rounded-full object-cover  m-4
+                w-full md:w-20 h-[200px] md:h-20
+
+            ">
             
-            <div>
+            <div class="text-xl md:text-sm font-bold ml-10 md:ml-0">
                 <a routerLink="/food/{{item.food.id}}">
                     {{item.food.name}}
                 </a>
             </div>
-            <div>
-                <select #quantitySelect (change)="changeQuantity(item,quantitySelect.value)">
+            <div class="flex-grow flex justify-end">
+                <select #quantitySelect (change)="changeQuantity(item,quantitySelect.value)" class="border shadow-sm p-1 rounded-sm">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -18,18 +26,25 @@
                
                 </select>
             </div>
-            <div>
+            <div class="font-bold flex-grow flex justify-end mr-3 md:flex-none md:flex-grow-0">
                 {{item.price|currency}}
             </div>
-            <div>
-                <button (click)="removeFromCart(item)">Remove Item</button>
+            <div class="w-screen md:w-auto" >
+                <button class="w-full md:w-auto capitalize  h-12 bg-[#e72929] text-white opacity-90 hover:opacity-100 rounded-md p-2 mt-5 md:mt-0"
+                (click)="removeFromCart(item)">Remove Item</button>
             </div>
         </li>
     </ul>
+    <section class=" mx-5  md:w-52 h-52 flex-col rounded-2xl border border-[#bbf3ff] flex justify-center items-center text-xl">   
+        <div>
+           Amount: {{ cart.items.length}}
+        </div>
+        <div class="font-bold">Total Price: {{cart.totalPrice|currency}}</div>
+        </section>
 </section>
-<section>   
-<div>
-    {{ cart.items.length}}
-</div>
-<div>{{cart.totalPrice|currency}}</div>
+
+
+<section *ngIf="cart.items.length===0" class="w-screen h-[calc(100vh-100px)] flex justify-center items-center">
+    <h1 class="text-5xl capitalize">No Items In the Cart</h1>
+
 </section>

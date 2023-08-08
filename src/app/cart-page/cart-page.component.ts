@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CartService } from '../services/cart/cart.service';
 import { cart } from '../share/models/cart';
 import { cartItem } from '../share/models/cartItem';
+import { FoodService } from '../services/food/food.service';
 
 @Component({
   selector: 'app-cart-page',
@@ -12,6 +13,12 @@ export class CartPageComponent {
   cart!:cart
 
   constructor(private cartService:CartService){
+    // mock data
+// , foodService:FoodService
+    // let foods = foodService.getAll();
+    // cartService.addToCart(foods[1])
+    // cartService.addToCart(foods[2])
+    // cartService.addToCart(foods[0])
     this.setCart();
   }
 
