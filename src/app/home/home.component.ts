@@ -16,12 +16,12 @@ export class HomeComponent {
   ngOnInit(){
     this.route.params.subscribe(params => {
       if(params['searchTerm']){
-        this.foods = this.foodServices.getAll()
-        .filter(s=>
-          s.name.toLocaleLowerCase()
-          .includes(params['searchTerm'].toLocaleLowerCase()) )
-
-      }else
+        this.foods = this.foodServices.searchFood(params['searchTerm'])
+      }
+      else if(params['tag']){
+       this.foods=  this.foodServices.getAllByTag(params['tag']);
+      }
+      else
       this.foods = this.foodServices.getAll();
 
     }); // check changes in route.

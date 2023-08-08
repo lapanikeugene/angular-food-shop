@@ -1,12 +1,48 @@
 import { Injectable } from '@angular/core';
 import { Food } from 'src/app/share/models/food';
+import { Tag } from 'src/app/share/models/tag';
 
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class FoodService {
+  getAllByTag(tag:string): Food[] {
+    if(tag==='All') return this.getAll();
+
+    const arr = this.getAll();
+    return arr.filter(s=>{
+      if(!s.tags) return s;
+      return s.tags?.indexOf(tag)>-1})
+  }
 
   constructor() { }
+
+  getAllTags():Tag[] {
+    let rawTags = [...this.getAll().map(s=>s.tags)].flat();
+    const arr:Tag[] = [];
+
+    for(const tag of rawTags){
+      if(!tag) continue;
+      const index = arr.findIndex(s=>s.name===tag);
+      if(index>-1) arr[index].count++;
+      else arr.push({name:tag, count:1})
+    }
+    console.log(arr);
+    arr.push({name:"All",count:this.getAll().length});
+    arr.sort((a, b) => (a.name > b.name) ? 1 : -1)
+
+    return arr;
+  }
+  searchFood(term:string){
+    return this.getAll()
+        .filter(s=>
+          s.name.toLocaleLowerCase()
+          .includes(term.toLocaleLowerCase()) )
+
+      }
 
   getAll():Food[]{
     return [
