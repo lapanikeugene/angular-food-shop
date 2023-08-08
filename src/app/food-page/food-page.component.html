@@ -1,10 +1,17 @@
-<section *ngIf="food">
-    <img [src]="food.imageUrl" [alt]="food.name">
-<article>
-    <h1>{{food.name}}</h1>
+<section *ngIf="food" class="flex flex-col md:flex-row justify-center items-center m-12 min-w-[25rem] ">
+    <img [src]="food.imageUrl" [alt]="food.name" class="rounded-2xl object-cover h-[25rem] m-4">
+<article class="w-full md:w-1/4">
+    
+    <section class="flex gap-4 items-start justify-start">
+        <h1>{{food.name}}</h1>
+        <div class="mt-2">
+            <mat-icon class="{{food.favorite ? 'fill-red' : ''}}" *ngIf="food.favorite" >favorite</mat-icon>
+            <mat-icon *ngIf="!food.favorite">favorite_border</mat-icon>
+    
+        </div>
+    
+    </section>
     <section>
-        <mat-icon class="{{food.favorite ? 'fill-red' : ''}}" *ngIf="food.favorite" >favorite</mat-icon>
-        <mat-icon *ngIf="!food.favorite">favorite_border</mat-icon>
         <app-stars [stars]="+food.stars"> </app-stars>
 
     </section>
@@ -18,7 +25,7 @@
     </section>
 
     <section *ngIf="food.tags">
-        <div class="text-sm text-gray-400 hover:text-slate-800 hover:font-bold hover:transition-all hover:scale-110 cursor-default">
+        <div class="text-sm text-gray-500 hover:text-slate-800 hover:font-bold hover:transition-all hover:scale-110 cursor-default">
             <span class="capitalize" >
                 {{food.tags.join(", ")}}
 
@@ -26,7 +33,8 @@
         </div>
     </section>
 
-    <section>
+    <section class="flex flex-wrap w-full gap-1 mt-4 items-center">
+        <span>Time to cook appr.</span> 
         <div class="fill-red flex justify-start gap-2 items-start mt-1">
             <mat-icon>timer</mat-icon>
             <span class="text-slate-700">{{food.cookTime}}</span>
@@ -34,8 +42,11 @@
     </section>
 
     <footer>
-        <div>
+        <div class="text-5xl text-green-600">
             {{food.price|currency}}
+        </div>
+        <div>
+            <button class="capitalize w-full h-12 bg-[#e72929] text-white opacity-90 hover:opacity-100 rounded-md p-1 mt-5">Add to Cart</button>
         </div>
     </footer>
 
