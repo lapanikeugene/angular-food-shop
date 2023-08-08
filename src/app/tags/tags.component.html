@@ -1,5 +1,6 @@
-<nav *ngIf="tags.length > 0">
-<a *ngFor="let tag of tags" routerLink="/tag/{{tag.name}}">
+<nav *ngIf="tags.length > 0" class="flex flex-wrap justify-center items-center gap-4 mb-5">
+<a *ngFor="let tag of tags" routerLink="/tag/{{tag.name}}" 
+class=" bg-slate-300 rounded-lg p-2 hover:bg-slate-200 hover:font-bold font-medium">
     {{tag.name}} ({{tag.count}})
 
 </a>
