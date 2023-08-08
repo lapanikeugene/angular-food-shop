@@ -7,22 +7,26 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import {MatIconModule} from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { RatingModule } from 'ng-starrating';
 import { StarsComponent } from './stars/stars.component';
-
+import { SearchComponent } from './search/search.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    StarsComponent
+    StarsComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
     MatIconModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule  
   ],
   providers: [],
   bootstrap: [AppComponent]
