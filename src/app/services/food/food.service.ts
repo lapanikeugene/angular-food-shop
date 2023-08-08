@@ -36,6 +36,9 @@ export class FoodService {
 
     return arr;
   }
+  getFoodById(id:number){
+    return this.getAll().find(s=>s.id===id);
+  }
   searchFood(term:string){
     return this.getAll()
         .filter(s=>

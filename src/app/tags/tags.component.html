@@ -1,6 +1,13 @@
 <nav *ngIf="tags.length > 0" class="flex flex-wrap justify-center items-center gap-4 mb-5">
 <a *ngFor="let tag of tags" routerLink="/tag/{{tag.name}}" 
-class=" bg-slate-300 rounded-lg p-2 hover:bg-slate-200 hover:font-bold font-medium">
+[class]="'  rounded-lg p-2 hover:bg-slate-200 hover:font-bold font-medium' "
+[ngStyle]="
+{
+    'background-color': ( activeTag === tag.name ? '#e72929 ' : 'rgb(226 232 240)'),
+    'color':  ( activeTag === tag.name ? 'white' : ''),
+    'font-weight': ( activeTag === tag.name ? '700' : ''),
+}"
+>
     {{tag.name}} ({{tag.count}})
 
 </a>

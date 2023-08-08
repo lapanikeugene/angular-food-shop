@@ -1,0 +1,49 @@
+<section *ngIf="food">
+    <img [src]="food.imageUrl" [alt]="food.name">
+<article>
+    <h1>{{food.name}}</h1>
+    <section>
+        <mat-icon class="{{food.favorite ? 'fill-red' : ''}}" *ngIf="food.favorite" >favorite</mat-icon>
+        <mat-icon *ngIf="!food.favorite">favorite_border</mat-icon>
+        <app-stars [stars]="+food.stars"> </app-stars>
+
+    </section>
+    <section >
+        <div class="text-sm text-gray-400 hover:text-slate-800 hover:font-bold hover:transition-all hover:scale-110 cursor-default">
+            <span class="capitalize" >
+                {{food.origins.join(", ")}}
+
+            </span>
+        </div>
+    </section>
+
+    <section *ngIf="food.tags">
+        <div class="text-sm text-gray-400 hover:text-slate-800 hover:font-bold hover:transition-all hover:scale-110 cursor-default">
+            <span class="capitalize" >
+                {{food.tags.join(", ")}}
+
+            </span>
+        </div>
+    </section>
+
+    <section>
+        <div class="fill-red flex justify-start gap-2 items-start mt-1">
+            <mat-icon>timer</mat-icon>
+            <span class="text-slate-700">{{food.cookTime}}</span>
+        </div>
+    </section>
+
+    <footer>
+        <div>
+            {{food.price|currency}}
+        </div>
+    </footer>
+
+</article>
+</section>
+
+
+
+<section *ngIf="!food" class="w-screen h-[100vh-200px] flex justify-center items-center text-5xl font-bold">
+    404: Not Found!
+</section>
